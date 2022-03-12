@@ -2,30 +2,26 @@ module.exports = {
   darkMode: "class",
   content: ["./pages/**/*.{html,js}", "./components/**/*.{html,js}"],
   theme: {
+    screens: {
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
+
+      "3xl": "2000px",
+      // => @media (min-width: 1920px) { ... }
+    },
     extend: {
-      animation: {
-        fadeIn: "fade 1s ease-in-out",
-        w1: "w1Anim 1.5s infinite",
-        w2: "w2Anim 1.5s infinite",
-      },
-      keyframes: {
-        w1Anim: {
-          "0%": { opacity: "0" },
-          "1%": { opacity: "1" },
-          "49%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-        w2Anim: {
-          "50%": { opacity: "0" },
-          "51%": { opacity: "1" },
-          "99%": { opacity: "1" },
-          "100%": { opacity: "0" },
-        },
-        fade: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-      },
       fontFamily: {
         Outfit: ["Outfit", "sans-serif"],
       },
