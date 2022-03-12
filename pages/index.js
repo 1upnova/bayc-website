@@ -76,13 +76,15 @@ export default function Home() {
               playsInline
               loop
             ></video>
-            <Image
-              className='heroImg rounded-2xl'
-              src='/static/images/tempHero.png'
-              width='3840'
-              height='1600'
-              alt='BAYC Hero Image'
-            />
+            <div className='heroImg'>
+              <Image
+                className='rounded-2xl'
+                src='/static/images/tempHero.png'
+                width='3840'
+                height='1600'
+                alt='BAYC Hero Image'
+              />
+            </div>
           </div>
           <a
             onClick={() => {
