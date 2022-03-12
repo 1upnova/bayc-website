@@ -64,9 +64,9 @@ export default function Home() {
               alt='Clickable Icon'
             />
           </a>
-          <div className='relative h-[80vh] 3xl:w-[98vw] rounded-2xl mt-16 overflow-hidden'>
+          <div className='relative h-fit max-h-[80vh] 3xl:w-[98vw] rounded-2xl mt-16 overflow-hidden'>
             <video
-              className='hero-hidden trailerVid absolute inset-0 z-50 h-full max-w-none'
+              className='hero-hidden rounded-2xl trailerVid absolute inset-0 z-50 w-full max-w-none'
               src='/static/videos/TrailerSourceFixed.mp4'
               autoPlay
               muted
@@ -77,10 +77,10 @@ export default function Home() {
               loop
             ></video>
             <Image
-              className='heroImg'
+              className='heroImg rounded-2xl'
               src='/static/images/tempHero.png'
-              width='3000'
-              height='1687'
+              width='3840'
+              height='1600'
               alt='BAYC Hero Image'
             />
           </div>
