@@ -34,6 +34,18 @@ main {
   overflow-x: hidden;
 }
 
+.popup-modal {
+  transition: height 0.8s cubic-bezier(1, 0, 0, 1) 0ms;
+}
+
+.modal-active {
+  height: 100vh;
+}
+
+.hero-hidden {
+  display: none;
+}
+
 .underline-stable:before {
   content: "";
   display: block;

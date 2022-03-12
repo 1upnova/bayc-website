@@ -14,9 +14,49 @@ export default function Home() {
         <link rel='icon' href='/favicon.png' />
       </Head>
       <Navigation />
-      <main>
-        <section className='relative h-screen max-w-[100vw] px-8 flex flex-col justify-center items-center w-screen bg-white dark:bg-[#080808]'>
-          <a className='cursor-pointer absolute h-[s0px] w-[30px] z-50 left-[20%] top-[52%]'>
+      <main className='bg-white dark:bg-[#080808]'>
+        <div className='popup-modal flex flex-col fixed w-screen h-0 dark:bg-white bg-[#080808] inset-0 z-20 overflow-hidden'>
+          <div className='relative h-[50vh] overflow-hidden'></div>
+          <div className='relative h-[50vh] overflow-hidden'>
+            <div className='absolute'>
+              <Image
+                className='absolute popup-img'
+                src='/static/images/Slider2.png'
+                width='3840'
+                height='2160'
+                alt='Popup Image'
+              />
+            </div>
+          </div>
+          <a
+            onClick={() => {
+              document
+                .querySelector(".popup-modal")
+                .classList.remove("modal-active");
+            }}
+            className='font-Outfit cursor-pointer absolute bottom-0 right-0 flex flex-row items-center justify-center gap-4 font-light mr-16 mb-16 text-white mix-blend-difference text-2xl'
+          >
+            Close Popup
+            <div className='w-[18px]'>
+              <Image
+                className='invert rotate-[-90deg]'
+                src='/static/images/arr-icon.svg'
+                width='300'
+                height='300'
+                alt='Right Arrow Icon'
+              />
+            </div>
+          </a>
+        </div>
+        <section className='relative h-screen max-w-[100vw] z-10 px-8 flex flex-col justify-center items-center w-screen'>
+          <a
+            onClick={() => {
+              document
+                .querySelector(".popup-modal")
+                .classList.add("modal-active");
+            }}
+            className='cursor-pointer absolute h-[s0px] w-[30px] z-50 left-[20%] top-[52%]'
+          >
             <Image
               src='/static/images/clickable.png'
               width='100'
@@ -24,20 +64,50 @@ export default function Home() {
               alt='Clickable Icon'
             />
           </a>
-          <div className='h-[80vh] 3xl:w-[98vw] rounded-2xl mt-16 overflow-hidden'>
+          <div className='relative h-[80vh] 3xl:w-[98vw] rounded-2xl mt-16 overflow-hidden'>
+            <video
+              className='hero-hidden trailerVid absolute inset-0 z-50 h-full max-w-none'
+              src='/static/videos/TrailerSourceFixed.mp4'
+              autoPlay
+              muted
+              controls
+              disablePictureInPicture
+              controlsList='nodownload noremoteplayback noplaybackrate'
+              playsInline
+              loop
+            ></video>
             <Image
-              className=''
+              className='heroImg'
               src='/static/images/tempHero.png'
               width='3000'
               height='1687'
               alt='BAYC Hero Image'
             />
           </div>
-          <a className='font-Outfit flex flex-row items-center justify-center gap-4 font-normal underline-stable text-black dark:text-white place-self-end mt-8 text-2xl'>
-            View Trailer
+          <a
+            onClick={() => {
+              document
+                .querySelector(".trailerVid")
+                .classList.toggle("hero-hidden");
+              const timer = setTimeout(() => {
+                if (
+                  !document
+                    .querySelector(".trailerVid")
+                    .classList.contains("hero-hidden")
+                )
+                  document.querySelector(".heroChangeBtn").innerText =
+                    "City View";
+                else
+                  document.querySelector(".heroChangeBtn").innerHTML =
+                    "View Trailer";
+              }, 100);
+            }}
+            className='font-Outfit flex flex-row items-center justify-center gap-4 font-light underline-stable text-black dark:text-white place-self-end mt-8 text-2xl'
+          >
+            <span className='heroChangeBtn'>View Trailer</span>
             <div className='w-[18px]'>
               <Image
-                className='invert'
+                className='dark:invert'
                 src='/static/images/arr-icon.svg'
                 width='300'
                 height='300'
