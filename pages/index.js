@@ -16,7 +16,6 @@ export default function Home() {
       <Navigation />
       <main className='bg-white dark:bg-[#080808]'>
         <div className='popup-modal flex flex-col fixed w-screen h-0 dark:bg-white bg-[#080808] inset-0 z-20 overflow-hidden'>
-          <div className='relative h-[50vh] overflow-hidden'></div>
           <div className='relative h-[50vh] overflow-hidden'>
             <div className='absolute'>
               <Image
@@ -28,6 +27,7 @@ export default function Home() {
               />
             </div>
           </div>
+          <div className='relative h-[50vh] overflow-hidden'></div>
           <a
             onClick={() => {
               document
