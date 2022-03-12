@@ -89,6 +89,9 @@ export default function Home() {
               document
                 .querySelector(".trailerVid")
                 .classList.toggle("hero-hidden");
+              document
+                .querySelector(".heroImg")
+                .classList.toggle("hero-hidden");
               const timer = setTimeout(() => {
                 if (
                   !document
