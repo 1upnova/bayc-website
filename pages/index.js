@@ -2,6 +2,32 @@ import Head from "next/head";
 import { Fragment, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Navigation from "../components/Navigation";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  initial: {
+    y: 10,
+    opacity: 0,
+    skewY: 0.5,
+  },
+  inView: {
+    y: 0,
+    skewY: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
+
+const stagger = {
+  inView: {
+    transition: {
+      staggerChildren: 0.6,
+    },
+  },
+};
 
 export default function Home() {
   useEffect(() => {});
@@ -27,7 +53,58 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className='relative h-[50vh] overflow-hidden'></div>
+          <motion.div
+            initial='initial'
+            whileInView='inView'
+            variants={stagger}
+            className='px-64 pt-32 relative h-[50vh] flex flex-row overflow-hidden text-white dark:text-black'
+          >
+            <motion.div
+              initial='initial'
+              whileInView='inView'
+              variants={stagger}
+              className='w-1/2'
+            >
+              <motion.h1
+                variants={fadeInUp}
+                className='pb-4 font-Outfit font-medium text-6xl'
+              >
+                Quest Name
+              </motion.h1>
+              <motion.span
+                variants={fadeInUp}
+                className='font-Outfit font-light text-2xl'
+              >
+                Main Square
+              </motion.span>
+            </motion.div>
+            <motion.p
+              initial='initial'
+              whileInView='inView'
+              variants={stagger}
+              className='flex flex-col w-1/2 font-Outfit font-light text-2xl'
+            >
+              <motion.span variants={fadeInUp}>
+                Lorem ipsum dolor sit amet. Nam hendrerit, justo eget
+              </motion.span>
+              <motion.span variants={fadeInUp}>
+                pretium orci purus. Morbi odio, varius nec hendrerit quis,
+                eleifend
+              </motion.span>
+              <motion.span variants={fadeInUp}>
+                posuere vel. Lectus purus, efficitur sit amet justo ac, commodo.
+              </motion.span>
+              <motion.span variants={fadeInUp}>
+                Suspendisse ultrices diam, hendrerit facilisis velit malesuada,
+              </motion.span>
+              <motion.span variants={fadeInUp}>
+                Fusce mattis dolor pharetra, nec vulputate. Aliquam eu.
+              </motion.span>
+              <motion.span variants={fadeInUp}>
+                Quisque vehicula blandit nisl a feugiat. Vestibulum quam
+              </motion.span>
+            </motion.p>
+          </motion.div>
           <a
             onClick={() => {
               document
@@ -120,6 +197,55 @@ export default function Home() {
               />
             </div>
           </a>
+        </section>
+        <section className='relative h-fit w-fit my-96 z-10 px-8'>
+          <div className='slide-1 h-fit w-fit gap-64 px-32 flex flex-row justify-center items-center'>
+            <div className='w-1/4'>
+              <div>
+                <Image
+                  className='rounded-2xl'
+                  src='/static/images/ape.png'
+                  width='616'
+                  height='624'
+                  alt='Bored Ape (Jimmy)'
+                />
+              </div>
+            </div>
+            <div className='flex flex-col w-1/2 font-Outfit'>
+              <h2 className='font-medium text-6xl'>This is a test title.</h2>
+              <p className='font-light text-xl mt-8 opacity-[0.95]'>
+                Here is a test paragraph to demonstrate that Reit is a huge
+                fucking idiot and that he will never ever succeed in his life.
+                He literally sucks at everything; there is no thing that he is
+                good at. He is also a scammer because he made 800k on the first
+                project and only paid me 100$ and proxy 5$.
+              </p>
+            </div>
+          </div>
+          <div className='left-[45%]  flex flex-row gap-4 bottom-0 font-Outfit font-medium text-3xl absolute'>
+            <div className='w-[18px] opacity-60 hover:opacity-100 cursor-pointer'>
+              <Image
+                className='dark:invert rotate-[180deg]'
+                src='/static/images/arr-icon.svg'
+                width='300'
+                height='300'
+                alt='Right Arrow Icon'
+              />
+            </div>
+            <div className='opacity-60'>
+              <span>01</span>
+              <span>/04</span>
+            </div>
+            <div className='w-[18px] opacity-60 hover:opacity-100 cursor-pointer'>
+              <Image
+                className='dark:invert'
+                src='/static/images/arr-icon.svg'
+                width='300'
+                height='300'
+                alt='Right Arrow Icon'
+              />
+            </div>
+          </div>
         </section>
       </main>
     </Fragment>
