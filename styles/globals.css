@@ -46,6 +46,10 @@ main {
   display: none;
 }
 
+.hero-img-hidden {
+  opacity: 0;
+}
+
 .underline-stable:before {
   content: "";
   display: block;
