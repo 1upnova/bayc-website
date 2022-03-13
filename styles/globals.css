@@ -50,6 +50,18 @@ main {
   opacity: 0;
 }
 
+.activeSlider {
+  display: flex !important;
+}
+
+.no-overflow {
+  overflow: hidden !important;
+}
+
+.iframeSec {
+  overflow: hidden;
+}
+
 .underline-stable:before {
   content: "";
   display: block;
@@ -86,6 +98,16 @@ main {
   height: 1px;
   @apply bg-black dark:bg-white;
   transform: scaleX(1);
+}
+
+.site-col:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  content: "";
+  height: 100%;
+  @apply outline-2 outline-dashed dark:outline-white/25 outline-black/25 z-50;
 }
 
 .underline-stable {
