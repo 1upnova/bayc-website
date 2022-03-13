@@ -42,8 +42,16 @@ main {
   height: 100vh;
 }
 
+.trailerVid {
+  transition: transform 0.8s cubic-bezier(1, 0, 0, 1) 0ms;
+}
+
 .hero-hidden {
-  display: none;
+  transform: translateY(-100%);
+}
+
+.heroImg {
+  transition: opacity 0.8s cubic-bezier(1, 0, 0, 1) 0.8ms;
 }
 
 .hero-img-hidden {

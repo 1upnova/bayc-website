@@ -175,7 +175,7 @@ export default function Home() {
           </a>
           <div className='relative h-fit max-h-[80vh] 3xl:w-[98vw] rounded-2xl mt-16 overflow-hidden'>
             <video
-              className='hero-hidden rounded-2xl trailerVid absolute inset-0 z-50 w-full max-w-none'
+              className='hero-hidden translate-y-0 rounded-2xl trailerVid absolute inset-0 z-50 w-full max-w-none'
               src='/static/videos/TrailerSourceFixed.mp4'
               autoPlay
               muted
