@@ -46,8 +46,22 @@ main {
   transition: transform 0.8s cubic-bezier(1, 0, 0, 1) 0ms;
 }
 
-.hero-hidden {
-  transform: translateY(-100%);
+@media (min-width: 1280px) {
+  .hero-hidden {
+    transform: translateY(-100%);
+  }
+  .sliderArrSelector {
+    right: 4rem;
+  }
+}
+
+@media (max-width: 1279px) {
+  .hero-hidden {
+    transform: translateY(0);
+  }
+  .sliderArrSelector {
+    left: 4rem;
+  }
 }
 
 .heroImg {
@@ -56,6 +70,20 @@ main {
 
 .hero-img-hidden {
   opacity: 0;
+}
+
+.realHidden {
+  display: none;
+}
+
+.PauseIcon,
+.PlayIcon {
+  color: inherit;
+  fill: none;
+  height: 1.5em;
+  width: 1.5em;
+  stroke-width: 1px;
+  stroke: currentColor;
 }
 
 .activeSlider {
