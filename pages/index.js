@@ -3,6 +3,9 @@ import { Fragment, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Navigation from "../components/Navigation";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const fadeInUp = {
   initial: {
@@ -59,6 +62,45 @@ export default function Home() {
         document.querySelector(sliderSelector).classList.add("activeSlider");
         sliderNumbSpan.innerText = currentSlide.toString().padStart(2, "0");
       }
+    });
+
+    ScrollTrigger.matchMedia({
+      "(min-width: 1280px)": function () {
+        let bossesTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".bossesSection",
+            start: "center 60%",
+            end: "bottom top",
+            pin: ".bossesSection",
+            pinSpacing: true,
+            scrub: 0.2,
+          },
+        });
+
+        bossesTl.to(".bossesSection-inner", {
+          x: "-101%",
+          ease: "none",
+          duration: 10,
+        });
+      },
+      "(max-width: 1279px)": function () {
+        let bossesTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".bossesSection",
+            start: "center 53%",
+            end: "bottom top",
+            pin: ".bossesSection",
+            pinSpacing: true,
+            scrub: 0.2,
+          },
+        });
+
+        bossesTl.to(".bossesSection-inner", {
+          x: "-101%",
+          ease: "none",
+          duration: 10,
+        });
+      },
     });
   });
 
@@ -324,67 +366,131 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className='px-8 w-screen min-h-screen flex flex-col overflow-hidden'>
-          <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
-            <div className='w-[90vw] h-[82vw] xl:w-[50vw] xl:h-[42vw] bg-cover bg-right bg-[url(/static/images/Slider2.png)]'></div>
-            <div className='w-[90vw] h-[82vw] relative xl:w-[50vw] xl:h-[42vw] flex flex-row justify-center overflow-hidden'>
-              <div className='cursor-pointer pauseBtn rounded-full z-20 bg-transparent hover:bg-white text-white hover:text-black p-4 absolute bottom-2 left-2'>
-                <svg
-                  onClick={() => {
-                    document.querySelector(".squareVid").pause();
-                    document
-                      .querySelector(".PauseIcon")
-                      .classList.add("realHidden");
-                    document
-                      .querySelector(".PlayIcon")
-                      .classList.remove("realHidden");
-                  }}
-                  width='12'
-                  height='13'
-                  viewBox='0 0 12 13'
-                  className='PauseIcon'
-                >
-                  <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
-                  <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
-                </svg>
-                <svg
-                  onClick={() => {
-                    document.querySelector(".squareVid").play();
-                    document
-                      .querySelector(".PlayIcon")
-                      .classList.add("realHidden");
-                    document
-                      .querySelector(".PauseIcon")
-                      .classList.remove("realHidden");
-                  }}
-                  viewBox='6 2 12 13.5'
-                  className='PlayIcon realHidden'
-                >
-                  <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
-                </svg>
+        <section className='bossesSection max-w-none min-h-screen overflow-hidden'>
+          <div className='bossesSection-inner flex flex-row'>
+            <div className='h-fit w-screen  flex flex-col px-8 '>
+              <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
+                <div className='w-[90vw] h-[82vw] xl:w-[50vw] xl:h-[42vw] bg-cover bg-right bg-[url(/static/images/Slider2.png)]'></div>
+                <div className='w-[90vw] h-[82vw] relative xl:w-[50vw] xl:h-[42vw] flex flex-row justify-center overflow-hidden'>
+                  <div className='cursor-pointer pauseBtn rounded-full z-20 bg-transparent hover:bg-white text-white hover:text-black p-4 absolute bottom-2 left-2'>
+                    <svg
+                      onClick={() => {
+                        document.querySelector(".squareVid").pause();
+                        document
+                          .querySelector(".PauseIcon")
+                          .classList.add("realHidden");
+                        document
+                          .querySelector(".PlayIcon")
+                          .classList.remove("realHidden");
+                      }}
+                      width='12'
+                      height='13'
+                      viewBox='0 0 12 13'
+                      className='PauseIcon'
+                    >
+                      <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
+                      <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
+                    </svg>
+                    <svg
+                      onClick={() => {
+                        document.querySelector(".squareVid").play();
+                        document
+                          .querySelector(".PlayIcon")
+                          .classList.add("realHidden");
+                        document
+                          .querySelector(".PauseIcon")
+                          .classList.remove("realHidden");
+                      }}
+                      viewBox='6 2 12 13.5'
+                      className='PlayIcon realHidden'
+                    >
+                      <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
+                    </svg>
+                  </div>
+                  <video
+                    className='squareVid h-full max-w-none right-0'
+                    src='/static/videos/TrailerSourceFixed.mp4'
+                    autoPlay
+                    muted
+                    disablePictureInPicture
+                    playsInline
+                    loop
+                  ></video>
+                </div>
               </div>
-              <video
-                className='squareVid h-full max-w-none right-0'
-                src='/static/videos/TrailerSourceFixed.mp4'
-                autoPlay
-                muted
-                disablePictureInPicture
-                playsInline
-                loop
-              ></video>
+              <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
+                <div className='w-[90vw] xl:w-[50vw]'></div>
+                <div className='w-[90vw] relative xl:w-[50vw] flex flex-row justify-start overflow-hidden'>
+                  <span className='mt-4 font-Outfit font-light text-black dark:text-white text-xl opacity-[0.9]'>
+                    The thick ice covering the deepest lake on earth offers a
+                    mesmerizing, crystal-clear view into its depths.
+                  </span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
-            <div className='w-[90vw] xl:w-[50vw]'></div>
-            <div className='w-[90vw] relative xl:w-[50vw] flex flex-row justify-start overflow-hidden'>
-              <span className='mt-4 font-Outfit font-light text-black dark:text-white text-xl opacity-[0.9]'>
-                The thick ice covering the deepest lake on earth offers a
-                mesmerizing, crystal-clear view into its depths.
-              </span>
+            <div className='h-fit w-screen  flex flex-col px-8 '>
+              <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
+                <div className='w-[90vw] h-[82vw] xl:w-[50vw] xl:h-[42vw] bg-cover bg-right bg-[url(/static/images/Slider3.png)]'></div>
+                <div className='w-[90vw] h-[82vw] relative xl:w-[50vw] xl:h-[42vw] flex flex-row justify-center overflow-hidden'>
+                  <div className='cursor-pointer pauseBtn rounded-full z-20 bg-transparent hover:bg-white text-white hover:text-black p-4 absolute bottom-2 left-2'>
+                    <svg
+                      onClick={() => {
+                        document.querySelector(".squareVid").pause();
+                        document
+                          .querySelector(".PauseIcon")
+                          .classList.add("realHidden");
+                        document
+                          .querySelector(".PlayIcon")
+                          .classList.remove("realHidden");
+                      }}
+                      width='12'
+                      height='13'
+                      viewBox='0 0 12 13'
+                      className='PauseIcon'
+                    >
+                      <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
+                      <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
+                    </svg>
+                    <svg
+                      onClick={() => {
+                        document.querySelector(".squareVid").play();
+                        document
+                          .querySelector(".PlayIcon")
+                          .classList.add("realHidden");
+                        document
+                          .querySelector(".PauseIcon")
+                          .classList.remove("realHidden");
+                      }}
+                      viewBox='6 2 12 13.5'
+                      className='PlayIcon realHidden'
+                    >
+                      <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
+                    </svg>
+                  </div>
+                  <video
+                    className='squareVid h-full max-w-none right-0'
+                    src='/static/videos/TrailerSourceFixed.mp4'
+                    autoPlay
+                    muted
+                    disablePictureInPicture
+                    playsInline
+                    loop
+                  ></video>
+                </div>
+              </div>
+              <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
+                <div className='w-[90vw] xl:w-[50vw]'></div>
+                <div className='w-[90vw] relative xl:w-[50vw] flex flex-row justify-start overflow-hidden'>
+                  <span className='mt-4 font-Outfit font-light text-black dark:text-white text-xl opacity-[0.9]'>
+                    The thick ice covering the deepest lake on earth offers a
+                    mesmerizing, crystal-clear view into its depths.
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
-        <section className='mt-32 flex flex-row items-center justify-between px-8 lg:px-16 min-h-[40vh] overflow-hidden font-Outfit'>
+        <section className='mt-32 mb-64 flex flex-row items-center justify-between px-8 lg:px-16 overflow-hidden font-Outfit'>
           <div className='font-semibold text-2xl lg:text-4xl w-2/4 lg:w-1/4'>
             BAYC<br></br>Metaverse
           </div>
