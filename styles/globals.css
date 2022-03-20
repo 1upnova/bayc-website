@@ -77,13 +77,23 @@ main {
 }
 
 .PauseIcon,
-.PlayIcon {
+.PlayIcon,
+.PauseIcon2,
+.PlayIcon2 {
   color: inherit;
-  fill: none;
-  height: 1.5em;
-  width: 1.5em;
-  stroke-width: 1px;
-  stroke: currentColor;
+  fill: currentColor;
+  height: 2em;
+  width: 2em;
+  stroke-width: 0px;
+}
+
+.soundPlayerWidget-PauseIcon,
+.soundPlayerWidget-PlayIcon {
+  color: inherit;
+  fill: currentColor;
+  height: 0.7em;
+  width: 0.7em;
+  stroke-width: 0px;
 }
 
 .activeSlider {
@@ -96,6 +106,13 @@ main {
 
 .iframeSec {
   overflow: hidden;
+}
+
+.viewFullImage {
+  position: fixed !important;
+  inset: 0;
+  width: 100vw !important;
+  height: 100vh !important;
 }
 
 .underline-stable:before {

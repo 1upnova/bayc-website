@@ -35,6 +35,88 @@ const stagger = {
 export default function Home() {
   const mainRef = useRef(null);
 
+  const SongRow = () => {
+    if (typeof Audio != "undefined") {
+      var audioBAYC = new Audio("/static/music/DelistYourApe.mp3");
+      audioBAYC.addEventListener(
+        "timeupdate",
+        function () {
+          var duration = document.getElementById("soundPlayerWidget-time");
+          var s = parseInt(audioBAYC.currentTime % 60);
+          var m = parseInt((audioBAYC.currentTime / 60) % 60);
+          duration.innerHTML = m + ":" + s;
+        },
+        false
+      );
+    }
+
+    const playSong = () => {
+      audioBAYC.play();
+      document
+        .querySelector(".soundPlayerWidget-PauseIcon")
+        .classList.remove("realHidden");
+      document
+        .querySelector(".soundPlayerWidget-PlayIcon")
+        .classList.add("realHidden");
+    };
+    const pauseSong = () => {
+      audioBAYC.pause();
+      document
+        .querySelector(".soundPlayerWidget-PauseIcon")
+        .classList.add("realHidden");
+      document
+        .querySelector(".soundPlayerWidget-PlayIcon")
+        .classList.remove("realHidden");
+    };
+    return (
+      <div className='absolute bg-white dark:bg-[#080808] w-[150px] h-[280px] xl:w-[300px] xl:h-[100px] left-[50%] md:left-[58%] xl:left-[67%] top-[36%] soundPlayer rounded-2xl overflow-hidden flex flex-col xl:flex-row justify-start'>
+        <div className='soundPlayerImage w-full xl:w-1/3'>
+          <Image
+            className=''
+            src='/static/images/ape.png'
+            width='616'
+            height='624'
+            alt='Bored Ape (Jimmy)'
+          />
+        </div>
+        <div className='soundPlayerWidget w-full xl:w-2/3 p-2 font-Outfit flex flex-col'>
+          <span className=''>&ldquo;Delist your ape&rdquo;</span>
+          <span className='font-light opacity-90 text-sm'>BAYC9797</span>
+          <span className='font-light text-sm opacity-50'>
+            ft. Reo Cragun &amp; Clear Eyes
+          </span>
+          <div className='flex flex-row items-center'>
+            <div className='soundPlayerWidget-pauseBtn '>
+              <svg
+                onClick={() => pauseSong()}
+                width='12'
+                height='13'
+                viewBox='0 0 12 13'
+                className='soundPlayerWidget-PauseIcon realHidden cursor-pointer'
+              >
+                <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
+                <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
+              </svg>
+              <svg
+                onClick={() => playSong()}
+                viewBox='6 2 12 13.5'
+                className='soundPlayerWidget-PlayIcon cursor-pointer'
+              >
+                <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
+              </svg>
+            </div>
+            <span
+              className='ml-2 font-Outfit font-light'
+              id='soundPlayerWidget-time'
+            >
+              0:0
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   useEffect(() => {
     var currentSlide = 1;
     var numOfSlides = 2;
@@ -372,7 +454,7 @@ export default function Home() {
               <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
                 <div className='w-[90vw] h-[82vw] xl:w-[50vw] xl:h-[42vw] bg-cover bg-right bg-[url(/static/images/Slider2.png)]'></div>
                 <div className='w-[90vw] h-[82vw] relative xl:w-[50vw] xl:h-[42vw] flex flex-row justify-center overflow-hidden'>
-                  <div className='cursor-pointer pauseBtn rounded-full z-20 bg-transparent hover:bg-white text-white hover:text-black p-4 absolute bottom-2 left-2'>
+                  <div className='z-20 text-white p-4 absolute bottom-2 left-2'>
                     <svg
                       onClick={() => {
                         document.querySelector(".squareVid").pause();
@@ -386,7 +468,7 @@ export default function Home() {
                       width='12'
                       height='13'
                       viewBox='0 0 12 13'
-                      className='PauseIcon'
+                      className='cursor-pointer PauseIcon'
                     >
                       <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
                       <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
@@ -402,7 +484,7 @@ export default function Home() {
                           .classList.remove("realHidden");
                       }}
                       viewBox='6 2 12 13.5'
-                      className='PlayIcon realHidden'
+                      className='cursor-pointer PlayIcon realHidden'
                     >
                       <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
                     </svg>
@@ -432,43 +514,43 @@ export default function Home() {
               <div className='flex flex-col xl:flex-row gap-8 items-center xl:justify-between'>
                 <div className='w-[90vw] h-[82vw] xl:w-[50vw] xl:h-[42vw] bg-cover bg-right bg-[url(/static/images/Slider3.png)]'></div>
                 <div className='w-[90vw] h-[82vw] relative xl:w-[50vw] xl:h-[42vw] flex flex-row justify-center overflow-hidden'>
-                  <div className='cursor-pointer pauseBtn rounded-full z-20 bg-transparent hover:bg-white text-white hover:text-black p-4 absolute bottom-2 left-2'>
+                  <div className='z-20 text-white p-4 absolute bottom-2 left-2'>
                     <svg
                       onClick={() => {
-                        document.querySelector(".squareVid").pause();
+                        document.querySelector(".squareVid2").pause();
                         document
-                          .querySelector(".PauseIcon")
+                          .querySelector(".PauseIcon2")
                           .classList.add("realHidden");
                         document
-                          .querySelector(".PlayIcon")
+                          .querySelector(".PlayIcon2")
                           .classList.remove("realHidden");
                       }}
                       width='12'
                       height='13'
                       viewBox='0 0 12 13'
-                      className='PauseIcon'
+                      className='cursor-pointer PauseIcon2'
                     >
                       <path d='M0.443359 12.6221V0.622311L4.29929 0.622311V12.6221H0.443359Z'></path>
                       <path d='M7.64109 12.6218V0.62207L11.497 0.62207V12.6218H7.64109Z'></path>
                     </svg>
                     <svg
                       onClick={() => {
-                        document.querySelector(".squareVid").play();
+                        document.querySelector(".squareVid2").play();
                         document
-                          .querySelector(".PlayIcon")
+                          .querySelector(".PlayIcon2")
                           .classList.add("realHidden");
                         document
-                          .querySelector(".PauseIcon")
+                          .querySelector(".PauseIcon2")
                           .classList.remove("realHidden");
                       }}
                       viewBox='6 2 12 13.5'
-                      className='PlayIcon realHidden'
+                      className='cursor-pointer PlayIcon2 realHidden'
                     >
                       <path d='M16.25 8.625L7.10317 2.52183V14.7282L16.25 8.625Z'></path>
                     </svg>
                   </div>
                   <video
-                    className='squareVid h-full max-w-none right-0'
+                    className='squareVid2 h-full max-w-none right-0'
                     src='/static/videos/TrailerSourceFixed.mp4'
                     autoPlay
                     muted
@@ -518,6 +600,9 @@ export default function Home() {
               <span className='text-lg lg:text-2xl font-normal'>2011</span>
             </div>
           </div>
+        </section>
+        <section className='relative h-screen w-screen bg-cover bg-center bg-[url(/static/images/Slider2.png)]'>
+          <SongRow />
         </section>
       </main>
     </Fragment>
